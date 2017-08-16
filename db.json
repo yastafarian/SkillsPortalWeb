@@ -1,0 +1,118 @@
+{
+  "avail_skills":[
+    {
+      "title": "Java",
+      "people": ["yasser_s", "thamer_s", "dennis_r", "steve_j"]
+    },
+    {
+      "title": "Javascript",
+      "people": ["yasser_s", "thamer_s", "steve_j"]
+    },
+    {
+      "title": "C#",
+      "people": ["yasser_s", "dennis_r"]
+    },
+    {
+      "title": "Python",
+      "people": ["yasser_s", "thamer_s", "dennis_r", "steve_j"]
+    },
+    {
+      "title": "Ruby",
+      "people": ["thamer_s", "steve_j"]
+    },
+    {
+      "title": "C++",
+      "people": ["dennis_r"]
+    }
+  ],
+  "people":[
+    {
+    "name": "Yasser Saad",
+    "username": "yasser_s",
+    "skills":[
+              {
+                "title": "Java",
+                "level": "Expert"
+              },
+              {
+                "title": "Javascript",
+                "level": "Proficient"
+              },
+              {
+                "title": "C#",
+                "level": "Excellent"
+              },
+              {
+                "title": "Python",
+                "level": "Familiar"
+              }
+            ]
+    },
+    {
+      "name": "Thamer Saleh",
+      "username": "thamer_s",
+      "skills":[
+                {
+                  "title": "Java",
+                  "level": "Familiar"
+                },
+                {
+                  "title": "Javascript",
+                  "level": "Excellent"
+                },
+                {
+                  "title": "Ruby",
+                  "level": "Proficient"
+                },
+                {
+                  "title": "Python",
+                  "level": "Expert"
+                }
+              ]
+    },
+    {
+      "name": "Dennis Ritchie",
+      "username": "dennis_r",
+      "skills":[
+                {
+                  "title": "Java",
+                  "level": "Expert"
+                },
+                {
+                  "title": "C++",
+                  "level": "Expert"
+                },
+                {
+                  "title": "C#",
+                  "level": "Expert"
+                },
+                {
+                  "title": "Python",
+                  "level": "Expert"
+                }
+              ]
+    },
+    {
+      "name": "Steve Jackson",
+      "username": "steve_j",
+      "skills":[
+                {
+                  "title": "Java",
+                  "level": "Excellent"
+                },
+                {
+                  "title": "Javascript",
+                  "level": "Excellent"
+                },
+                {
+                  "title": "Ruby",
+                  "level": "Familiar"
+                },
+                {
+                  "title": "Python",
+                  "level": "Familiar"
+                }
+              ]
+    }
+  ]
+}

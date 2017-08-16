@@ -1,0 +1,12 @@
+<app-navigation-bar
+              (loginClicked)="onClickedLogin()"
+              (registerUser)="onRegister($event)"
+              (profileClicked)="onClickedProfile()">
+</app-navigation-bar>
+<div class="center-div">
+  <app-skill-select-menu [skills]="skills"
+                     (select)="onSkillSelected($event)"></app-skill-select-menu>
+  <app-people-list [people]="people"
+                    [selectedSkill]="selectedSkill"
+                    (personClicked)="onPersonClicked($event)"></app-people-list>
+</div>

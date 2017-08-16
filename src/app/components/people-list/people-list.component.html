@@ -1,0 +1,11 @@
+<section class="main"
+        *ngIf="people.length > 0">
+  <ul class="people-list">
+    <li *ngFor="let person of people">
+      <app-people-list-item
+          [person] = "person"
+          [skill] = "selectedSkill"
+          (clicked) = "onClick($event)"></app-people-list-item>
+    </li>
+  </ul>
+</section>

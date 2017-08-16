@@ -1,0 +1,35 @@
+<h2 md-dialog-title>Register a new user</h2>
+
+<md-dialog-content>
+  Email:<br>
+<input mdInput placeholder="example@domain.com" [(ngModel)] = "email">
+</md-dialog-content>
+<br />
+
+<md-dialog-content>
+    Username:<br>
+<input mdInput placeholder="Username" [(ngModel)] = "username">
+</md-dialog-content>
+<br />
+
+<md-dialog-content>
+    Name:<br>
+<input mdInput placeholder="Name"  [(ngModel)] = "name">
+</md-dialog-content>
+<br />
+
+<md-dialog-content>
+    Password:<br>
+<input mdInput placeholder="Password"  [(ngModel)] = "password" type="password">
+<input mdInput placeholder="Confirm Password"  [(ngModel)] = "conPass" type="password">
+</md-dialog-content>
+<p>
+  {{error}}
+</p>
+
+
+<md-dialog-actions>
+  <button md-button md-dialog-close [md-dialog-close]="true">Cancel</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button md-button (click)="onClickRegister()">Regiser</button>
+</md-dialog-actions>
