@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+@import "~https://fonts.googleapis.com/icon?family=Material+Icons";
 
 
 body {
@@ -9,6 +9,44 @@ body {
   font-family: Roboto, sans-serif;
   vertical-align: center;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 10%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+}
+li a.active {
+  unselectable: "on";
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  unselectable: "on";
+  background-color: #555;
+  color: white;
+}
+
 
 h1 {
   font-size: 32px;
@@ -24,40 +62,6 @@ h2 {
   padding: 0;
 }
 
-/*
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
-  border-bottom: 1px solid #ccc;
-}
-
-li:last-child {
-  border: none;
-}
-
-li a {
-  text-decoration: none;
-  color: #000;
-  display: block;
-  width: 200px;
-
-  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
-  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
-  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
-  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
-  transition: font-size 0.3s ease, background-color 0.3s ease;
-}
-
-li a:hover {
-  font-size: 30px;
-  background: #f6f6f6;
-}
-*/
 .center-div
 {
   position: absolute;
@@ -70,13 +74,6 @@ li a:hover {
   height: 200px;
   border-radius: 3px;
 }
-/*
-md-card {
-  max-width: 200%;
-  margin: 2em auto;
-  text-align: center;
-}
-*/
 
 md-toolbar-row {
   justify-content: space-between;

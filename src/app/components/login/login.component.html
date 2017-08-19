@@ -1,3 +1,24 @@
+<h2 md-dialog-title>Login</h2>
+
+<md-dialog-content>
+  Username:<br>
+  <input mdInput placeholder="Username" [(ngModel)] = "username">
+</md-dialog-content>
+<br />
+
+
+<md-dialog-content>
+  Password:<br>
+  <input mdInput placeholder="Password"  [(ngModel)] = "password" type="password">
+</md-dialog-content>
+
 <p>
-  login works!
+  {{error}}
 </p>
+
+
+<md-dialog-actions>
+  <button md-dialog-close [md-dialog-close]="true">Cancel</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button (click)="onClickLogin()">Login</button>
+</md-dialog-actions>

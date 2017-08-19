@@ -1,7 +1,9 @@
 <app-navigation-bar
-              (loginClicked)="onClickedLogin()"
-              (registerUser)="onRegister($event)"
-              (profileClicked)="onClickedProfile()">
+              (loginClicked)="onClickLogin()"
+              (registerClicked)="onClickRegister()"
+              (profileClicked)="onClickProfile()"
+              (logoutClicked)="onClickLogout()"
+                width=25%>
 </app-navigation-bar>
 <div class="center-div">
   <app-skill-select-menu [skills]="skills"

@@ -1,3 +1,9 @@
-<button  (click)="onClickProfile()" style="float: left;">profile</button>
-<button  (click)="onClickLogin()" style="float: right;">Login</button>
-<button  (click)="onClickRegister()" style="float: right;">Rgister</button>
+<ul>
+  <li><a *ngIf="isLoggedIn()" (click)="onClickProfile()">profile</a></li>
+  <li><a *ngIf="!isLoggedIn()" (click)="onClickLogin()">Login</a></li>
+  <li><a *ngIf="!isLoggedIn()" (click)="onClickRegister()">Register</a></li>
+  <li><a *ngIf="isLoggedIn()" (click)="onClickLogout()">Logout</a></li>
+</ul>
+
+
+

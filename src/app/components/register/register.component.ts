@@ -26,8 +26,8 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(email)){
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(email)) {
       return true;
     }
     this.error = 'Error: Invalid email';
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         this.name.length > 0 &&
         this.username.length > 0 &&
         this.password.length > 0 &&
-        this.conPass.length > 0){
+        this.conPass.length > 0) {
           return true;
         }
     this.error = 'Error: Please fill all fields';
@@ -47,17 +47,20 @@ export class RegisterComponent implements OnInit {
   }
 
   matchPasswords(){
-    if (this.password === this.conPass){
+    if (this.password === this.conPass) {
       return true;
     }
-    this.error = 'Error: Passowrds do not match'
+    this.error = 'Error: Passwords do not match';
     return false;
   }
 
   checkEntries() {
     if (!this.checkFields()) return false;
+
     if (!this.validateEmail(this.email)) return false;
+
     if (!this.matchPasswords()) return false;
+
     return true;
   }
 
@@ -74,19 +77,20 @@ export class RegisterComponent implements OnInit {
   }
 
   onClickRegister(){
+
+    //TODO: Switch to event emitters to make this a dump component.
     if (this.checkEntries()){
       this.prepareResponse();
-
-      //TODO: Call Authentication service
       //      based on the response perform action.
       this.authService
           .registerUser(this.regForm)
           .subscribe(res => {
-            if (res.hasOwnProperty("token")){
-              console.log("registering");
+            if (res.hasOwnProperty('token')){
+              console.log('registering');
+              //setup JWT
               this.dialogRef.close(this.regForm);
             }
-            else if (res.hasOwnProperty("message")){
+            else if (res.hasOwnProperty('message')){
                 this.error = res.message;
             }
           });

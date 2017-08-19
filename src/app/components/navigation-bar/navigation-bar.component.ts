@@ -15,7 +15,18 @@ export class NavigationBarComponent implements OnInit {
   regForm: RegForm;
 
   @Output()
-  registerUser: EventEmitter<RegForm> = new EventEmitter();
+  profileClicked: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  registerClicked: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  loginClicked: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  logoutClicked: EventEmitter<any> = new EventEmitter();
+
+
 
   constructor(
     public dialog: MdDialog
@@ -24,27 +35,25 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickProfile(){
-    let dialogRef = this.dialog.open(ProfileComponent);
-    console.log('profile clicked');
+  onClickProfile() {
+    this.profileClicked.emit();
   }
 
-  onClickLogin(){
-    let dialogRef = this.dialog.open(LoginComponent);
-    console.log('login clicked');
+  onClickLogin() {
+    this.loginClicked.emit();
   }
 
-  onClickRegister(){
-    let dialogRef = this.dialog.open(RegisterComponent,
-      {
-         height: '400px',
-         width: '600px',
-         disableClose:true
-       });
-       // remember that this is an asynchronous call
-     dialogRef.afterClosed().subscribe(result => {
-          this.regForm = result;
-          this.registerUser.emit(this.regForm);
-     });
+  onClickRegister() {
+    this.registerClicked.emit();
+  }
+
+  onClickLogout(){
+    this.logoutClicked.emit();
+  }
+
+  isLoggedIn(){
+    if (localStorage.getItem('currentUser'))
+      return true;
+    return false;
   }
 }
