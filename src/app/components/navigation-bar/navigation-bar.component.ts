@@ -47,13 +47,14 @@ export class NavigationBarComponent implements OnInit {
     this.registerClicked.emit();
   }
 
-  onClickLogout(){
+  onClickLogout() {
     this.logoutClicked.emit();
   }
 
-  isLoggedIn(){
-    if (localStorage.getItem('currentUser'))
+  isLoggedIn() {
+    if (localStorage.getItem('currentUser')) {
       return true;
+    };
     return false;
   }
 }

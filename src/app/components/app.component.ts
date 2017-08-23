@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
   }
 
   onClickLogout(){
+    console.log('local storage length' + localStorage.length);
     localStorage.removeItem('currentUser');
   }
 
@@ -68,7 +69,9 @@ export class AppComponent implements OnInit {
       });
     // remember that this is an asynchronous call
     dialogRef.afterClosed().subscribe(result => {
+      if (result.hasOwnProperty('token')) {
         localStorage.setItem('currentUser', JSON.stringify(result));
+      }
     });
   }
 
@@ -86,9 +89,7 @@ export class AppComponent implements OnInit {
   }
 
   isLoggedIn(){
-    if (localStorage.getItem('currentUser'))
-      return true;
-    return false;
+    return (localStorage.getItem('currentUser'));
   }
 
   onSkillSelected(selectedSkill) {
