@@ -30,14 +30,12 @@ export class AppComponent implements OnInit {
   selectedSkill: AvailSkill;
 
   constructor(
-    private skillsDataService: SkillsDataService,
-    private peopleDataService: PeopleDataService,
     private authService: AuthenticationService,
     public dialog: MdDialog
   ) {}
 
   public ngOnInit() {
-    this.onGetAllSkills();
+
   }
 
   onClickProfile(){
@@ -90,42 +88,6 @@ export class AppComponent implements OnInit {
 
   isLoggedIn(){
     return (localStorage.getItem('currentUser'));
-  }
-
-  onSkillSelected(selectedSkill) {
-    this.selectedSkill = selectedSkill;
-    // Now we have the user names
-    this.getPeopleWithSelectedSkill();
-  }
-
-  getPeopleWithSelectedSkill() {
-    console.log('getting people with skill: ' + this.selectedSkill.title);
-    this.people = [];
-    // it returns an array, but a username is unique; therefore, we get a single
-    // element array.
-    for (const username of this.selectedSkill.people){
-      console.log(this.selectedSkill.people.length);
-      this.peopleDataService
-          .getPersonByUsername(username)
-          .subscribe((personArray) => {
-            // TODO: handle empty array here.
-            const person = personArray[0];
-            this.people = this.people.concat(person);
-          });
-    }
-  }
-
-  onPersonClicked(person: Person) {
-    // open dialog here.
-    const dialogRef = this.dialog.open(PersonDetailsComponent);
-    dialogRef.componentInstance.person = person;
-    console.log(person.name);
-  }
-
-  onGetAllSkills() {
-    this.skillsDataService
-          .getAllSkills()
-          .subscribe((skills) => this.skills = skills);
   }
 
 }

@@ -1,20 +1,11 @@
-<header class="header">
-  <select [(ngModel)]="selectedSkill" required>
-   <option *ngFor="let skill of skills" [ngValue]="skill" > {{skill.title}} </option>
- </select>
- <!--
-<h1>Skills Portal</h1>
- <md-input-container>
-   <input mdInput placeholder="Skill"
-          [mdAutocomplete]="auto"
-          [formControl]="skillCtrl">
- </md-input-container>
 
- <md-autocomplete #auto="mdAutocomplete" >
-   <md-option *ngFor="let skill of filteredSkills | async" [value]="skill.title" (onSelectionChange)="onChangeSelection(skill)" (onSelect)="onSelect()">
-     {{ skill.title }}
-   </md-option>
- </md-autocomplete>
- </header>-->
-
-<button  (click)="onSelect(skill)">Select</button>
+ <div class="container h-100">
+   <div class="row h-100 justify-content-center align-items-center">
+     <header class="header">
+       <select [(ngModel)]="selectedSkill" required>
+         <option *ngFor="let skill of skills" [ngValue]="skill" > {{skill.title}} </option>
+       </select>
+     </header>
+     <button  (click)="onSelect(skill)">Select</button>
+   </div>
+ </div>

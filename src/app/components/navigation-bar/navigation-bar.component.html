@@ -1,9 +1,8 @@
-<ul>
-  <li><a *ngIf="isLoggedIn()" (click)="onClickProfile()">profile</a></li>
-  <li><a *ngIf="!isLoggedIn()" (click)="onClickLogin()">Login</a></li>
-  <li><a *ngIf="!isLoggedIn()" (click)="onClickRegister()">Register</a></li>
-  <li><a *ngIf="isLoggedIn()" (click)="onClickLogout()">Logout</a></li>
-</ul>
-
+<div class="container">
+  <a href="#" *ngIf="isLoggedIn()" (click)="onClickProfile()">profile</a>
+  <a href="#" *ngIf="!isLoggedIn()" (click)="onClickLogin()">Login</a>
+  <a href="#" *ngIf="!isLoggedIn()" (click)="onClickRegister()">Register</a>
+  <a href="#" *ngIf="isLoggedIn()" (click)="onClickLogout()">Logout</a>
+</div>
 
 

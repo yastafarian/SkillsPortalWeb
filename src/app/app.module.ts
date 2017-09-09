@@ -30,6 +30,11 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AllSkillsComponent } from './components/all-skills/all-skills.component';
+
+import { AppRoutingModule } from './app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +45,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     NavigationBarComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    AllSkillsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     MdAutocompleteModule,
     MdInputModule,
     MdDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [SkillsDataService, SkillsApiService,
               PeopleApiService, PeopleDataService,

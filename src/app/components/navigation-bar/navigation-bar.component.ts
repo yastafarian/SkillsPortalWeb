@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { RegForm } from '../../models/reg-form';
+import {NgbCollapse} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -13,6 +14,8 @@ import { RegForm } from '../../models/reg-form';
 export class NavigationBarComponent implements OnInit {
 
   regForm: RegForm;
+
+  public isCollapsed = false;
 
   @Output()
   profileClicked: EventEmitter<any> = new EventEmitter();

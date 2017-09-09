@@ -1,14 +1,30 @@
-<app-navigation-bar
-              (loginClicked)="onClickLogin()"
-              (registerClicked)="onClickRegister()"
-              (profileClicked)="onClickProfile()"
-              (logoutClicked)="onClickLogout()"
-                width=25%>
-</app-navigation-bar>
-<div class="center-div">
-  <app-skill-select-menu [skills]="skills"
-                     (select)="onSkillSelected($event)"></app-skill-select-menu>
-  <app-people-list [people]="people"
-                    [selectedSkill]="selectedSkill"
-                    (personClicked)="onPersonClicked($event)"></app-people-list>
+
+<div class="container">
+  <div class="row justify-content-center align-self-center">
+
+    <div clas="col-2">
+
+    </div>
+    <div clas="col-8">
+      <nav class="navbar navbar-fixed-top navbar-dark">
+        <div class="container">
+          <a class="navbar-brand">Skills Portal</a>
+          <ul class="nav navbar-nav" routerLinkActive="active">
+            <li class="nav-item"><a class="nav-link" routerLink=".">All Skills</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="about" *ngIf="isLoggedIn()" (click)="onClickProfile()">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="courses" *ngIf="!isLoggedIn()" (click)="onClickLogin()">Login</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="courses" *ngIf="!isLoggedIn()" (click)="onClickLogin()">Register</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="courses" *ngIf="isLoggedIn()" (click)="onClickLogout()">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
+
+
+
+
+
+
