@@ -1,0 +1,7 @@
+<div class="container">
+  <app-skill-select-menu [skills]="skills"
+                         (select)="onSkillSelected($event)"></app-skill-select-menu>
+  <app-people-list [people]="people"
+                   [selectedSkill]="selectedSkill"
+                   (personClicked)="onPersonClicked($event)"></app-people-list>
+</div>
