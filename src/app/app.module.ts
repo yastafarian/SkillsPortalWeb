@@ -18,9 +18,11 @@ import { SkillSelectMenuComponent } from './components/skill-select-menu/skill-s
 import { PeopleListComponent } from './components/people-list/people-list.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule,
-        MdAutocompleteModule, MdInputModule,
-        MdDialogModule} from '@angular/material';
+import {
+  MdButtonModule, MdCheckboxModule,
+  MdAutocompleteModule, MdInputModule,
+  MdDialogModule, MdSnackBar, MdSnackBarModule
+} from '@angular/material';
 
 import 'hammerjs';
 import { PeopleListItemComponent } from './components/people-list-item/people-list-item.component';
@@ -34,6 +36,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AllSkillsComponent } from './components/all-skills/all-skills.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    AllSkillsComponent
+    AllSkillsComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,7 @@ import { AppRoutingModule } from './app-routing.module';
     MdAutocompleteModule,
     MdInputModule,
     MdDialogModule,
+    MdSnackBarModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
     AppRoutingModule

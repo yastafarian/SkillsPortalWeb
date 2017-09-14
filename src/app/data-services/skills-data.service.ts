@@ -18,15 +18,21 @@ export class SkillsDataService {
 
   // a user is either deleted or no longer wants to list the skill
   removeUser(username: string, skill: AvailSkill): Observable<AvailSkill> {
-    skill.people = skill.people.filter((u) => u != username);
+    skill.people = skill.people.filter((u) => u.username != username);
     return this.api.updateSkill(skill);
   }
 
+  /*
   // a new user added, or existing user learned the skill
   addUser(username: string, skill: AvailSkill): Observable<AvailSkill> {
+    let skill = {
+      username: username,
+      level: skill.le
+    }
     skill.people = skill.people.concat(username);
     return this.api.updateSkill(skill);
   }
+  */
 
   getAllSkills(): Observable<AvailSkill[]> {
     return this.api.getAllSkills();

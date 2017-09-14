@@ -50,7 +50,7 @@ export class PeopleApiService {
   // element array.
   getPersonByUsername(username: string): Observable<Person[]> {
     return this.http
-                .get(API_URL + '/people/users/' + username)
+                .get(API_URL + '/people/:' + username)
                 .map(response => {
                   const people = response.json();
                   return people.map((person) => new Person(person));

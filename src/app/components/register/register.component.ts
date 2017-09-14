@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, Injectable } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
 import { RegForm } from '../../models/reg-form';
 import { AuthenticationService} from '../../auth-services/authentication.service';
 
@@ -22,7 +21,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
       private authService: AuthenticationService,
-      public dialogRef: MdDialogRef<RegisterComponent>
   ) { }
 
   validateEmail(email) {
@@ -88,7 +86,7 @@ export class RegisterComponent implements OnInit {
             if (res.hasOwnProperty('token')){
               console.log('registering');
               //setup JWT
-              this.dialogRef.close(this.regForm);
+              //this.dialogRef.close(this.regForm);
             }
             else if (res.hasOwnProperty('message')){
                 this.error = res.message;

@@ -1,35 +1,105 @@
-<h2 md-dialog-title>Register a new user</h2>
+<div class="container my-5">
+  <form class="form-horizontal" role="form" method="POST" action="/register">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h2>Register New User</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
 
-<md-dialog-content>
-  Email:<br>
-<input mdInput placeholder="example@domain.com" [(ngModel)] = "email">
-</md-dialog-content>
-<br />
+      <!-- NAME -->
+      <div class="col-md-3 field-label-responsive">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+            <input type="text" name="name" class="form-control" id="name"
+                   placeholder="John Doe" required autofocus [(ngModel)] = "name">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+        </div>
+      </div>
+    </div>
 
-<md-dialog-content>
-    Username:<br>
-<input mdInput placeholder="Username" [(ngModel)] = "username">
-</md-dialog-content>
-<br />
+    <!-- EMAIL -->
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="email">E-Mail Address</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+            <input type="text" name="email" class="form-control" id="email"
+                   placeholder="you@example.com" required autofocus [(ngModel)] = "email">
+          </div>
+        </div>
+      </div>
 
-<md-dialog-content>
-    Name:<br>
-<input mdInput placeholder="Name"  [(ngModel)] = "name">
-</md-dialog-content>
-<br />
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            {{ Error }}
+                        </span>
+        </div>
+      </div>
+    </div>
 
-<md-dialog-content>
-    Password:<br>
-<input mdInput placeholder="Password"  [(ngModel)] = "password" type="password">
-<input mdInput placeholder="Confirm Password"  [(ngModel)] = "conPass" type="password">
-</md-dialog-content>
-<p>
-  {{error}}
-</p>
+    <!-- Password -->
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="password">Password</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group has-danger">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+            <input type="password" name="password" class="form-control" id="password"
+                   placeholder="Password" required [(ngModel)] = "password">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"> Example Error Message</i>
+                        </span>
+        </div>
+      </div>
+    </div>
 
-
-<md-dialog-actions>
-  <button md-dialog-close [md-dialog-close]="true">Cancel</button>
-  <!-- Can optionally provide a result for the closing dialog. -->
-  <button (click)="onClickRegister()">Register</button>
-</md-dialog-actions>
+    <!-- Confirm Password -->
+    <div class="row">
+      <div class="col-md-3 field-label-responsive">
+        <label for="password">Confirm Password</label>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem">
+              <i class="fa fa-repeat"></i>
+            </div>
+            <input type="password" name="password-confirmation" class="form-control"
+                   id="password-confirm" placeholder="Password" required [(ngModel)] = "conPass">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-success" (click)="onClickRegister()"><i class="fa fa-user-plus"></i> Register</button>
+      </div>
+    </div>
+  </form>
+</div>

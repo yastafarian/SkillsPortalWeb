@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+import {Component, OnInit} from '@angular/core';
 import { LoginForm} from "../../models/login-form";
 import { AuthenticationService} from "../../auth-services/authentication.service";
+import { Router } from "@angular/router";
+import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    public dialogRef: MdDialogRef<LoginComponent>
+    private router: Router,
+    public snackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,11 @@ export class LoginComponent implements OnInit {
       this.authService.loginUser(this.loginForm).subscribe(res => {
         if (res.hasOwnProperty('token')){
           let jwt = {username: this.loginForm.username, token: res.token};
-          this.dialogRef.close(jwt);
+          localStorage.setItem('currentUser', JSON.stringify(jwt));
+          this.snackBar.open('Logged in successfully', 'Dismiss', {
+            duration: 3000
+          });
+          this.router.navigateByUrl('');
         }
         else if (res.hasOwnProperty('message')){
           this.error = res.message;

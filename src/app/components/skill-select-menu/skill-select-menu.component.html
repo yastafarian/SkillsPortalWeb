@@ -1,11 +1,15 @@
 
- <div class="container h-100">
+ <div class="container my-5">
+
    <div class="row h-100 justify-content-center align-items-center">
      <header class="header">
+
        <select [(ngModel)]="selectedSkill" required>
          <option *ngFor="let skill of skills" [ngValue]="skill" > {{skill.title}} </option>
        </select>
+
      </header>
-     <button  (click)="onSelect(skill)">Select</button>
+     <button class="btn btn-primary mx-2" (click)="onSelect(skill)">Select</button>
    </div>
+
  </div>

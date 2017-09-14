@@ -1,24 +1,77 @@
-<h2 md-dialog-title>Login</h2>
+<div class="container my-5">
+  <form class="form-horizontal" role="form" method="POST" action="/login">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h2>Please Login</h2>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div class="form-group has-danger">
 
-<md-dialog-content>
-  Username:<br>
-  <input mdInput placeholder="Username" [(ngModel)] = "username">
-</md-dialog-content>
-<br />
+          <label class="sr-only" for="username">Username</label>
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+            <input type="text" name="username" class="form-control" id="username"
+                   placeholder="username" required autofocus [(ngModel)] = "username">
+          </div>
 
+        </div>
+      </div>
 
-<md-dialog-content>
-  Password:<br>
-  <input mdInput placeholder="Password"  [(ngModel)] = "password" type="password">
-</md-dialog-content>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i> {{error}}
+                        </span>
+        </div>
+      </div>
+    </div>
 
-<p>
-  {{error}}
-</p>
+    <div class="row">
+      <div class="col-md-3"></div>
 
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="sr-only" for="password">Password</label>
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+            <input type="password" name="password" class="form-control" id="password"
+                   placeholder="Password" required [(ngModel)] = "password">
+          </div>
+        </div>
+      </div>
 
-<md-dialog-actions>
-  <button md-dialog-close [md-dialog-close]="true">Cancel</button>
-  <!-- Can optionally provide a result for the closing dialog. -->
-  <button (click)="onClickLogin()">Login</button>
-</md-dialog-actions>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6" style="padding-top: .35rem">
+        <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+          <label class="form-check-label">
+            <input class="form-check-input" name="remember"
+                   type="checkbox" >
+            <span style="padding-bottom: .15rem">Remember me</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top: 1rem">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-success" (click)="onClickLogin()"><i class="fa fa-sign-in"></i> Login</button>
+        <a class="btn btn-link" href="/password/reset">Forgot Your Password?</a>
+      </div>
+    </div>
+  </form>
+</div>

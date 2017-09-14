@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MdDialog} from '@angular/material';
+import {MdDialog, MdSnackBar} from '@angular/material';
 
 import { AvailSkill } from '../models/avail-skill';
 import{ Person } from '../models/person';
@@ -9,10 +9,13 @@ import { SkillsDataService } from '../data-services/skills-data.service';
 import { PeopleDataService } from '../data-services/people-data.service';
 import { AuthenticationService} from '../auth-services/authentication.service';
 
+
+
 import { PersonDetailsComponent } from './person-details/person-details.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import {LogoutComponent} from "./logout/logout.component";
 
 
 @Component({
@@ -31,12 +34,12 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    public snackBar: MdSnackBar
   ) {}
 
-  public ngOnInit() {
+  public ngOnInit() {}
 
-  }
 
   onClickProfile(){
     this.authService.getProfile().subscribe(res => {
@@ -54,23 +57,27 @@ export class AppComponent implements OnInit {
   }
 
   onClickLogout(){
-    console.log('local storage length' + localStorage.length);
-    localStorage.removeItem('currentUser');
-  }
 
-  onClickLogin(){
-    const dialogRef = this.dialog.open(LoginComponent,
-      {
-        height: '300px',
-        width: '310px',
-        disableClose: true
-      });
+    //const dialogRef = this.dialog.open(LogoutComponent);
+
+    /*
     // remember that this is an asynchronous call
     dialogRef.afterClosed().subscribe(result => {
-      if (result.hasOwnProperty('token')) {
-        localStorage.setItem('currentUser', JSON.stringify(result));
+      if (result){
+        console.log('local storage length' + localStorage.length);
+        localStorage.removeItem('currentUser');
+        this.snackBar.open('Logged in successfully', 'Dismiss', {
+          duration: 3000
+        });
       }
     });
+    */
+    console.log('local storage length' + localStorage.length);
+    localStorage.removeItem('currentUser');
+    this.snackBar.open('Logged out successfully', 'Dismiss', {
+      duration: 3000
+    });
+
   }
 
   onClickRegister() {
