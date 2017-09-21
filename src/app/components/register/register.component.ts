@@ -76,6 +76,7 @@ export class RegisterComponent implements OnInit {
 
   onClickRegister(){
 
+    this.username = this.email;
     //TODO: Switch to event emitters to make this a dump component.
     if (this.checkEntries()){
       this.prepareResponse();

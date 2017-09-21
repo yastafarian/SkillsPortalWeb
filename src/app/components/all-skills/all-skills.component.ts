@@ -44,14 +44,13 @@ export class AllSkillsComponent implements OnInit {
     // it returns an array, but a username is unique; therefore, we get a single
     // element array.
     for (const person of this.selectedSkill.people){
-      console.log('wtf! = ' + this.selectedSkill.people[0].username);
       this.peopleDataService
         .getPersonByUsername(person.username)
         .subscribe((personArray) => {
           // TODO: handle empty array here.
           const person = personArray;
-          console.log(person);
-          this.people = this.people.concat(person);
+          console.log(person[0].username);
+          this.people = this.people.concat(person[0]);
         });
     }
   }
