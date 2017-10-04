@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 
-import { Http, Response } from '@angular/http';
+import {Http, RequestOptions, Response, Headers} from '@angular/http';
 import { Person } from '../models/person';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -28,8 +28,17 @@ export class PeopleApiService {
 
   // PUT /people?username=person.username
   updatePerson(person: Person): Observable<Person> {
+    delete person["_id"];
+    delete person["__v"];
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify(person);
+    let url = API_URL + '/people/update_skills/' + person.username;
+
+    console.log('in api update ' + url);
     return this.http
-    .put(API_URL + '/people/?username=' + person.username, person)
+    .put(url , body, options)
     .map(response => {
       return new Person(response.json());
     }).catch(this.handleError);
@@ -46,9 +55,10 @@ export class PeopleApiService {
   }
 
   // GET  /people?username=person.username
-  // it returns an array, but a username is uniqu; therefore, we get a single
+  // it returns an array, but a username is unique; therefore, we get a single
   // element array.
   getPersonByUsername(username: string): Observable<Person[]> {
+    console.log("getting user " + username);
     return this.http
                 .get(API_URL + '/people/' + username)
                 .map(response => {

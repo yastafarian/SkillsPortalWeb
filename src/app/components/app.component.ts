@@ -11,10 +11,10 @@ import { AuthenticationService} from '../auth-services/authentication.service';
 
 
 
-import { PersonDetailsComponent } from './person-details/person-details.component';
+import { PersonDetailsComponent } from './main-display/person-details/person-details.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './profile-display/profile/profile.component';
 import {LogoutComponent} from "./logout/logout.component";
 
 
@@ -26,74 +26,27 @@ import {LogoutComponent} from "./logout/logout.component";
 })
 export class AppComponent implements OnInit {
 
-  skills: AvailSkill[] = [];
-
-  people: Person[] = [];
-
-  selectedSkill: AvailSkill;
 
   constructor(
-    private authService: AuthenticationService,
-    public dialog: MdDialog,
     public snackBar: MdSnackBar
   ) {}
 
   public ngOnInit() {}
 
 
-  onClickProfile(){
-    this.authService.getProfile().subscribe(res => {
-      const user = new Person(res);
-
-      const dialogRef = this.dialog.open(ProfileComponent, {
-        height: '300px',
-        width: '310px',
-        data: {
-          profile: user
-        }});
-
-    });
-
-  }
-
   onClickLogout(){
-
-    //const dialogRef = this.dialog.open(LogoutComponent);
-
-    /*
-    // remember that this is an asynchronous call
-    dialogRef.afterClosed().subscribe(result => {
-      if (result){
-        console.log('local storage length' + localStorage.length);
-        localStorage.removeItem('currentUser');
-        this.snackBar.open('Logged in successfully', 'Dismiss', {
-          duration: 3000
-        });
-      }
-    });
-    */
     console.log('local storage length' + localStorage.length);
     localStorage.removeItem('currentUser');
     this.snackBar.open('Logged out successfully', 'Dismiss', {
       duration: 3000
     });
-
   }
 
-  onClickRegister() {
-    const dialogRef = this.dialog.open(RegisterComponent,
-      {
-        height: '400px',
-        width: '600px',
-        disableClose: true
-      });
-    // remember that this is an asynchronous call
-    dialogRef.afterClosed().subscribe(result => {
-      //this.regForm = result;
-    });
-  }
 
   isLoggedIn(){
+    /*
+      TODO: Check if the JWT is valid or not here
+     */
     return (localStorage.getItem('currentUser'));
   }
 

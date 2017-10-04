@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {MdDialog} from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
-import { ProfileComponent } from '../profile/profile.component';
+import { ProfileComponent } from '../profile-display/profile/profile.component';
 import { RegForm } from '../../models/reg-form';
 import {NgbCollapse} from '@ng-bootstrap/ng-bootstrap';
 

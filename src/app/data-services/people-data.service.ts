@@ -30,14 +30,7 @@ export class PeopleDataService {
   }
 
   // Add new or update a skill
-  updateSkills(skill:{title: string, level: string}, person: Person): Observable<Person> {
-    var index = this.checkIfExists(skill.title, person);
-    if (index == -1) {
-      person.skills = person.skills.concat(skill);
-    }
-    else {
-      person.skills[index] = skill;
-    }
+  updatePerson(person: Person): Observable<Person> {
     return this.api.updatePerson(person);
   }
 

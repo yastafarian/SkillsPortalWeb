@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { Person } from '../../models/person';
-import { AvailSkill } from '../../models/avail-skill';
+import { Person } from '../../../models/person';
+import { AvailSkill } from '../../../models/avail-skill';
 
 @Component({
   selector: 'app-people-list-item',

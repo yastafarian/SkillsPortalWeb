@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {MdDialog} from '@angular/material';
 
-import { AvailSkill } from '../../models/avail-skill';
-import{ Person } from '../../models/person';
+import { AvailSkill } from '../../../models/avail-skill';
+import{ Person } from '../../../models/person';
 
-import { SkillsDataService } from '../../data-services/skills-data.service';
-import { PeopleDataService } from '../../data-services/people-data.service';
+import { SkillsDataService } from '../../../data-services/skills-data.service';
+import { PeopleDataService } from '../../../data-services/people-data.service';
 
 import { PersonDetailsComponent } from '../person-details/person-details.component';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-all-skills',
@@ -25,11 +26,16 @@ export class AllSkillsComponent implements OnInit {
   constructor(
     private skillsDataService: SkillsDataService,
     private peopleDataService: PeopleDataService,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private route: ActivatedRoute
   ) {}
 
   public ngOnInit() {
-    this.onGetAllSkills();
+    this.route.data.map((data) => data['skills']).subscribe(
+      (skills) => {
+        this.skills = skills;
+      }
+    );
   }
 
   onSkillSelected(selectedSkill) {
@@ -60,12 +66,6 @@ export class AllSkillsComponent implements OnInit {
     const dialogRef = this.dialog.open(PersonDetailsComponent);
     dialogRef.componentInstance.person = person;
     console.log(person.name);
-  }
-
-  onGetAllSkills() {
-    this.skillsDataService
-      .getAllSkills()
-      .subscribe((skills) => this.skills = skills);
   }
 
 }

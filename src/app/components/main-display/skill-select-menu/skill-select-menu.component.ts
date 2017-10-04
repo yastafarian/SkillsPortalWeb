@@ -4,7 +4,7 @@ import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
-import { AvailSkill } from '../../models/avail-skill';
+import { AvailSkill } from '../../../models/avail-skill';
 
 @Component({
   selector: 'app-skill-select-menu',

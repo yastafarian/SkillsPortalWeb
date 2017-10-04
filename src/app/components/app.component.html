@@ -7,7 +7,7 @@
     <a class="navbar-brand" routerLink=".">Skills Portal</a>
     <div class="collapse navbar-collapse" id="navbarNav" routerLinkActive="active">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" routerLink="." *ngIf="isLoggedIn()" (click)="onClickProfile()">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="profile" *ngIf="isLoggedIn()">Profile</a></li>
       </ul>
       <ul class="navbar-nav nav-right">
         <li class="nav-item"><a class="nav-link" routerLink="login" *ngIf="!isLoggedIn()">Login</a></li>

@@ -1,0 +1,35 @@
+
+
+<div class="row" *ngIf="loaded">
+  <div class="col-3">
+
+  </div>
+  <div class="col">
+    <h2>Welcome {{profile.name}}</h2>
+  </div>
+  <div class="col">
+
+  </div>
+</div>
+
+
+<div class="row" *ngIf="loaded">
+  <div class="col-3">
+
+  </div>
+
+  <div class="col">
+
+    <!-- form to add a new skill -->
+    <app-add-new-skill
+        (addNewSkill)="onAddSkill($event)"></app-add-new-skill>
+
+    <!-- Display existing skills -->
+    <app-profile-skill-list
+      [profileSkills]="profile.skills"
+      (deleteSkill)="onDelete($event)"
+      (updateSkills)="updateSkills($event)"></app-profile-skill-list>
+  </div>
+</div>
+
+

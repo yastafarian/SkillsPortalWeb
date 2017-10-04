@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
-import { Person } from '../../models/person';
-import { Skill } from '../../models/skill';
+import { Person } from '../../../models/person';
+import { Skill } from '../../../models/skill';
 
 
 @Component({

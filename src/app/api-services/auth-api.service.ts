@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {Person} from "../models/person";
 
 const API_URL = environment.apiUrl;
 
@@ -33,17 +34,6 @@ export class AuthApiService {
       .map(response => {
         return response.json();
       }).catch(this.handleError);
-  }
-
-  //GET /profile
-  profile(token: string): Observable<any> {
-    let headers = new Headers({ 'Authorization': 'Bearer ' + token });
-    let options = new RequestOptions({ headers: headers });
-    return this.http
-      .get(API_URL + '/profile', options)
-      .map(response => {
-        return response.json();
-      });
   }
 
   handleError (error: Response | any) {
