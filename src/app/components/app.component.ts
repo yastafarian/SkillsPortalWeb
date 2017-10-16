@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile-display/profile/profile.component';
 import {LogoutComponent} from "./logout/logout.component";
+import {ProfileDataService} from "../data-services/profile-data.service";
 
 
 @Component({
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
 
 
   constructor(
-    public snackBar: MdSnackBar
+    public snackBar: MdSnackBar,
   ) {}
 
   public ngOnInit() {}

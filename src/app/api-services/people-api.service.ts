@@ -17,42 +17,6 @@ export class PeopleApiService {
     private http: Http
   ) { }
 
-  // POST /people
-  createPerson(person: Person): Observable<Person> {
-    return this.http
-    .post(API_URL + '/people', person)
-    .map(response => {
-      return new Person(response.json());
-    }).catch(this.handleError);
-  }
-
-  // PUT /people?username=person.username
-  updatePerson(person: Person): Observable<Person> {
-    delete person["_id"];
-    delete person["__v"];
-
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    let body = JSON.stringify(person);
-    let url = API_URL + '/people/update_skills/' + person.username;
-
-    console.log('in api update ' + url);
-    return this.http
-    .put(url , body, options)
-    .map(response => {
-      return new Person(response.json());
-    }).catch(this.handleError);
-  }
-
-  // GET /people
-  getAllPeople(): Observable<Person[]> {
-    return this.http
-                .get(API_URL + '/people')
-                .map(response => {
-                  const people = response.json();
-                  return people.map((person) => new Person(person));
-                }).catch(this.handleError)
-  }
 
   // GET  /people?username=person.username
   // it returns an array, but a username is unique; therefore, we get a single

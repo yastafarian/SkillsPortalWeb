@@ -24,7 +24,6 @@ export class AllSkillsComponent implements OnInit {
   selectedSkill: AvailSkill;
 
   constructor(
-    private skillsDataService: SkillsDataService,
     private peopleDataService: PeopleDataService,
     public dialog: MdDialog,
     private route: ActivatedRoute
@@ -45,7 +44,6 @@ export class AllSkillsComponent implements OnInit {
   }
 
   getPeopleWithSelectedSkill() {
-    console.log('getting people with skill: ' + this.selectedSkill.title);
     this.people = [];
     // it returns an array, but a username is unique; therefore, we get a single
     // element array.
@@ -65,7 +63,6 @@ export class AllSkillsComponent implements OnInit {
     // open dialog here.
     const dialogRef = this.dialog.open(PersonDetailsComponent);
     dialogRef.componentInstance.person = person;
-    console.log(person.name);
   }
 
 }

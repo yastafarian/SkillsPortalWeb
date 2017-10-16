@@ -80,14 +80,13 @@ export class RegisterComponent implements OnInit {
     //TODO: Switch to event emitters to make this a dump component.
     if (this.checkEntries()){
       this.prepareResponse();
-      //      based on the response perform action.
+      //  based on the response perform action.
       this.authService
           .registerUser(this.regForm)
           .subscribe(res => {
             if (res.hasOwnProperty('token')){
               console.log('registering');
-              //setup JWT
-              //this.dialogRef.close(this.regForm);
+              //TODO: Setup JWT and log the user in
             }
             else if (res.hasOwnProperty('message')){
                 this.error = res.message;

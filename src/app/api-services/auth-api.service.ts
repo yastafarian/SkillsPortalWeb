@@ -36,6 +36,7 @@ export class AuthApiService {
       }).catch(this.handleError);
   }
 
+
   handleError (error: Response | any) {
     console.error('AuthApiService::handleError', error);
     return Observable.throw(error);

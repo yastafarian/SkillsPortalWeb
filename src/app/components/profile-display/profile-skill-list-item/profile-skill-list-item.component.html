@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <!-- Skill title-->
+    <div class="col">
+      {{skill.title}}
+    </div>
+    <!-- level -->
+    <div class="col">
+      <select [(ngModel)]="skill.level" name="level" (change)="onChangeLevel()">
+        <option *ngFor="let level of skillLevels" [value]="level" [selected]="level == skill.level">
+          {{level}}
+        </option>
+      </select>
+
+    </div>
+    <!-- level -->
+    <div class="col">
+      <i class="material-icons" (click)="onClickDelete()" style="cursor:pointer">delete</i>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<section class="main" *ngIf="profileSkills.length > 0">
+  <md-list>
+    <md-list-item *ngFor="let skill of profileSkills">
+
+      <app-profile-skill-list-item
+        [skill]="skill"
+        (deleteSkill)="onDeleteSkill($event)"
+        (updateSkill)="onUpdateSkill($event)"></app-profile-skill-list-item>
+
+    </md-list-item>
+  </md-list>
+</section>

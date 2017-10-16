@@ -1,0 +1,13 @@
+<form class="example-form">
+  <md-form-field class="example-full-width">
+    <input mdInput placeholder="New Skill" (keyup.enter)="enterNewSkill()" [(ngModel)]="newSkill" [ngModelOptions]="{standalone: true}">
+  </md-form-field>
+
+  <md-select placeholder="Skill Level" [(ngModel)]="newSkillLevel" name="level">
+    <md-option *ngFor="let level of skillLevels" [value]="level">
+      {{level}}
+    </md-option>
+  </md-select>
+
+  <button class="btn btn-primary mx-2" (click)="enterNewSkill()">Add</button>
+</form>

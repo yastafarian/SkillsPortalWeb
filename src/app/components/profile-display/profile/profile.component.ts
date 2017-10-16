@@ -35,9 +35,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onChangeLevel(skill: Skill){
-
-  }
 
   onAddSkill(skill: Skill){
     let personSkills = this.profile.skills.filter(s => {
@@ -55,8 +52,10 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  updateSkills(newSkills){
-    this.profile.skills = newSkills;
+  updateSkill(skill: Skill){
+    this.profileService.editSkill(skill).subscribe(res => {
+      this.profile = res;
+    });
   }
 
 }
