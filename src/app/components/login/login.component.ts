@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { FormGroup, FormControl, Validators  } from "@angular/forms";
 import { LoginForm} from "../../models/login-form";
 import { AuthenticationService} from "../../auth-services/authentication.service";
 import { Router } from "@angular/router";
@@ -11,9 +12,15 @@ import {MdSnackBar} from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
-  username: String;
-  password: String;
-  error: String;
+
+  form: FormGroup;
+
+  email: FormControl;
+  password: FormControl;
+
+  isError: boolean;
+
+  errorMsg: String;
 
   public loginForm: LoginForm;
 
@@ -24,25 +31,36 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.createFormControls();
+    this.createForm();
+    this.resetError();
+  }
+
+  resetError(){
+    this.isError = false
+    this.errorMsg = '';
+  }
+
+  createFormControls(){
+    this.email = new FormControl('',[ Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")]);
+    this.password =  new FormControl('', [Validators.required]);
+  }
+
+  createForm(){
+    this.form = new FormGroup({
+      email: this.email,
+      password: this.password,
+    });
   }
 
   prepareRequest() {
     this.loginForm = new LoginForm();
-    this.loginForm.username = this.username;
-    this.loginForm.password = this.password;
-  }
-
-  checkFields(){
-    if (this.username.length > 0 &&
-      this.password.length > 0) {
-      return true;
-    }
-    this.error = 'Error: Please fill all fields';
-    return false;
+    this.loginForm.username = this.email.value;
+    this.loginForm.password = this.password.value;
   }
 
   onClickLogin(){
-    if (this.checkFields()) {
       this.prepareRequest();
       //Login user here
       this.authService.loginUser(this.loginForm).subscribe(res => {
@@ -55,10 +73,9 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('');
         }
         else if (res.hasOwnProperty('message')){
-          this.error = res.message;
+          this.isError = true;
+          this.errorMsg = res.message;
         }
       });
-    }
   }
-
 }

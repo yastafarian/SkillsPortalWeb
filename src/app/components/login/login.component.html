@@ -1,77 +1,88 @@
 <div class="container my-5">
-  <form class="form-horizontal" role="form" method="POST" action="/login">
+
+  <!--
+  added the novalidate attribute to the form element, by default browsers perform their own validation
+  and show their own errorMsg popups. Since we want to handle the form validation ourselves we can switch
+  off this behaviour by adding novalidate to the form element.
+  -->
+
+  <form [formGroup]="form" novalidate>
+
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <h2>Please Login:</h2>
+        <h2>User Login</h2>
         <hr>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <div class="form-group has-danger">
 
-          <label class="sr-only" for="username">Username/Email</label>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-            <input type="text" name="username" class="form-control" id="username"
-                   placeholder="username" required autofocus [(ngModel)] = "username">
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <i class="fa fa-close"></i> {{error}}
-                        </span>
-        </div>
-      </div>
-    </div>
 
     <div class="row">
-      <div class="col-md-3"></div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label class="sr-only" for="password">Password</label>
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-            <input type="password" name="password" class="form-control" id="password"
-                   placeholder="Password" required [(ngModel)] = "password">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="form-group"
+             [ngClass]="{
+          'has-danger': email.invalid && (email.dirty || email.touched),
+          'has-success': email.valid && (email.dirty || email.touched)
+          }">
+          <label>Email</label>
+          <input type="email"
+                 class="form-control"
+                 formControlName="email"
+                 placeholder="you@example.com"
+                 required
+                 autofocus>
+          <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+            <p *ngIf="email.errors.required">A man needs an email</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-3">
-        <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                        <!-- Put password error message here -->
-                        </span>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="form-group"
+             [ngClass]="{
+                'has-danger': password.invalid && (password.dirty || password.touched),
+                'has-success': password.valid && (password.dirty || password.touched)
+           }">
+          <label>Password</label>
+          <input type="password"
+                 class="form-control"
+                 formControlName="password"
+                 placeholder="Password"
+                 reverse="true"
+                 required>
+          <div class="form-control-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <p *ngIf="password.errors.required">A man must provide a password to the many faced god</p>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-3"></div>
-      <div class="col-md-6" style="padding-top: .35rem">
-        <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-          <label class="form-check-label">
-            <input class="form-check-input" name="remember"
-                   type="checkbox" >
-            <span style="padding-bottom: .15rem">Remember me</span>
-          </label>
-        </div>
+      <div class="col-md-6">
+        <button type="submit"
+                class="btn btn-success"
+                (click)="onClickLogin()"
+                [ngClass]='{disabled: form.invalid}'>
+
+          <i class="fa fa-user-plus"></i>
+          Login
+        </button>
       </div>
     </div>
 
-    <div class="row" style="padding-top: 1rem">
+    <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <button type="submit" class="btn btn-success" (click)="onClickLogin()"><i class="fa fa-sign-in"></i> Login</button>
-        <a class="btn btn-link" href="/password/reset">Forgot Your Password?</a>
+        <div class="form-control-feedback"  *ngIf="isError" style="color: red">
+          <p>{{errorMsg}}</p>
+        </div>
       </div>
     </div>
   </form>
+
 </div>

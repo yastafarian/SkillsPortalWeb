@@ -43,6 +43,9 @@ import { AddNewSkillComponent } from './components/profile-display/add-new-skill
 import {ProfileApiService} from "./api-services/profile-api.service";
 import {ProfileDataService} from "./data-services/profile-data.service";
 
+import { EqualValidator} from "./components/custom-validators/equal-validator.directive";
+import { HeaderComponent } from './components/common-components/header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,9 @@ import {ProfileDataService} from "./data-services/profile-data.service";
     LogoutComponent,
     ProfileSkillListComponent,
     ProfileSkillListItemComponent,
-    AddNewSkillComponent
+    AddNewSkillComponent,
+    EqualValidator,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

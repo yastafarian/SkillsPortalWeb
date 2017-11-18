@@ -1,6 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, Injectable } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { FormGroup, FormControl, Validators  } from "@angular/forms";
 import { RegForm } from '../../models/reg-form';
 import { AuthenticationService} from '../../auth-services/authentication.service';
+import {MdSnackBar} from "@angular/material";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -10,89 +13,82 @@ import { AuthenticationService} from '../../auth-services/authentication.service
 })
 export class RegisterComponent implements OnInit {
 
-  email: String;
-  name: String;
-  username: String;
-  password: String;
-  conPass: String;
-  error: String;
+  form: FormGroup;
+
+  name: FormControl;
+  email: FormControl;
+  password: FormControl;
+  conPass: FormControl;
+
+  isError: boolean;
+
+  errorMsg: String;
 
   public regForm: RegForm;
 
   constructor(
       private authService: AuthenticationService,
+      private router: Router,
+      public snackBar: MdSnackBar
   ) { }
 
-  validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(email)) {
-      return true;
-    }
-    this.error = 'Error: Invalid email';
-    return false;
+  ngOnInit() {
+    this.createFormControls();
+    this.createForm();
+    this.isError = false
+    this.errorMsg = '';
   }
 
-  checkFields(){
-    if (this.email.length > 0 &&
-        this.name.length > 0 &&
-        this.username.length > 0 &&
-        this.password.length > 0 &&
-        this.conPass.length > 0) {
-          return true;
-        }
-    this.error = 'Error: Please fill all fields';
-    return false;
+  createFormControls(){
+      this.name = new FormControl('', Validators.required);
+      this.email = new FormControl('',[ Validators.required,
+                                       Validators.pattern("[^ @]*@[^ @]*")]);
+      this.password =  new FormControl('', [ Validators.minLength(8),
+                                           Validators.required]);
+      this.conPass = new FormControl('', [ Validators.minLength(8),
+                                           Validators.required]);
   }
 
-  matchPasswords(){
-    if (this.password === this.conPass) {
-      return true;
-    }
-    this.error = 'Error: Passwords do not match';
-    return false;
+  createForm(){
+    this.form = new FormGroup({
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      conPass: this.conPass
+    });
   }
 
-  checkEntries() {
-    if (!this.checkFields()) return false;
-
-    if (!this.validateEmail(this.email)) return false;
-
-    if (!this.matchPasswords()) return false;
-
-    return true;
-  }
 
   prepareResponse(){
     this.regForm = new RegForm();
-    this.regForm.email = this.email;
-    this.regForm.name = this.name;
-    this.regForm.username = this.username;
-    this.regForm.password = this.password;
+    this.regForm.email = this.email.value;
+    this.regForm.name = this.name.value;
+    this.regForm.username = this.email.value;
+    this.regForm.password = this.password.value;
   }
 
-  ngOnInit() {
-    this.error = 'Please fill the fields';
-  }
+
 
   onClickRegister(){
-
-    this.username = this.email;
     //TODO: Switch to event emitters to make this a dump component.
-    if (this.checkEntries()){
       this.prepareResponse();
       //  based on the response perform action.
       this.authService
           .registerUser(this.regForm)
           .subscribe(res => {
             if (res.hasOwnProperty('token')){
-              console.log('registering');
-              //TODO: Setup JWT and log the user in
+              this.isError = false;
+              let jwt = {username: this.regForm.username, token: res.token};
+              localStorage.setItem('currentUser', JSON.stringify(jwt));
+              this.snackBar.open('Registered successfully', 'Dismiss', {
+                duration: 3000
+              });
+              this.router.navigateByUrl('');
             }
             else if (res.hasOwnProperty('message')){
-                this.error = res.message;
+                this.errorMsg = res.message;
+                this.isError = true;
             }
           });
     }
-  }
-
 }
